@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "dev": "node src/index.js",
     "test": "jest"
   },
   "dependencies": {
