@@ -1,15 +1,17 @@
 const walk = require("./service");
 
+const defaultDir = (process.env["R_MANAGE_DEFAULT_DIR"] || "").split(",");
+
+console.log(`start application, default dir is ${defaultDir}`);
+
 module.exports = {
   base: "resource",
   apis: [
     {
-      method: "post",
-      url: "",
+      method: "get",
+      url: "index",
       handler: async (req, res) => {
-        const body = req.body;
-        console.log(`body is ${JSON.stringify(body)}`);
-        return body.map((b) => walk(b));
+        return Promise.all(defaultDir.map(walk));
       },
     },
   ],
