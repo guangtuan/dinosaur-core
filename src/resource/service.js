@@ -1,15 +1,15 @@
-const fs = require('fs');
-const path = require('path');
-const Resource = require('./Resource');
+const fs = require("fs");
+const path = require("path");
+const Resource = require("./Resource");
 
-const isDirectory = p => fs.lstatSync(p).isDirectory();
+const isDirectory = (p) => fs.lstatSync(p).isDirectory();
 
-const walk = dir => {
-    const f = fs.readdirSync(dir).map(name => path.join(dir, name));
+const walk = (dir) => {
+    const f = fs.readdirSync(dir).map((name) => path.join(dir, name));
     return {
         name: dir,
         root: dir,
-        content: f.map(value => {
+        content: f.map((value) => {
             console.log(`f is ${value}`);
             if (isDirectory(value)) {
                 const children = walk(value);

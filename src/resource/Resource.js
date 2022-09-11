@@ -3,4 +3,4 @@ module.exports = class Resource {
         this.absPath = absPath;
         this.children = children;
     }
-}
+};
