@@ -4,11 +4,8 @@ const { dbUri } = require('./env')
 
 const client = new MongoClient(dbUri)
 
-let db = null
-
 const init = async () => {
     await client.connect()
-    db = await client.db('resourceManagement')
 }
 
 const close = async () => {
@@ -18,5 +15,5 @@ const close = async () => {
 module.exports = {
     init,
     close,
-    db,
+    collection: (name) => client.db('resourceManagement').collection(name),
 }

@@ -6,6 +6,7 @@ const db = require('./framework/db')
 const { webPort } = require('./framework/env')
 
 const resourceApi = require('./resource/api')
+const spaceApi = require('./space/api')
 
 const createApp = () => {
     const app = express()
@@ -18,7 +19,7 @@ const createApp = () => {
 const appInit = async () => {
     const app = createApp()
 
-    ;[resourceApi].forEach(async ({ base, apis }) => {
+    ;[resourceApi, spaceApi].forEach(async ({ base, apis }) => {
         apis.forEach(async (api) => {
             const actualUrl = urlJoin(['api', base, api.url])
             console.log(`actual url is ${actualUrl}, method is ${api.method}`)
@@ -48,7 +49,6 @@ const appInit = async () => {
         await appInit()
     } catch (e) {
         console.error(e)
-    } finally {
         await db.close()
     }
 })()
