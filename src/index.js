@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const urlJoin = require('./url')
 const db = require('./framework/db')
+const { webPort } = require('./framework/env')
 
 const resourceApi = require('./resource/api')
 
@@ -30,9 +31,7 @@ const appInit = async () => {
         })
     })
 
-    const port = 15889
-
-    app.listen(port, () => {
+    app.listen(webPort, () => {
         console.log('app listen on', port)
         console.log(
             app._router.stack
