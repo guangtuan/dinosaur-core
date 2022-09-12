@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const urlJoin = require('./url')
+const db = require('./framework/db')
 
 const resourceApi = require('./resource/api')
 
@@ -13,7 +14,7 @@ const createApp = () => {
     return app
 }
 
-;(async () => {
+const appInit = async () => {
     const app = createApp()
 
     ;[resourceApi].forEach(async ({ base, apis }) => {
@@ -40,4 +41,15 @@ const createApp = () => {
                 .map(({ path }) => path),
         )
     })
+}
+
+;(async () => {
+    try {
+        await db.init()
+        await appInit()
+    } catch (e) {
+        console.error(e)
+    } finally {
+        await db.close()
+    }
 })()
