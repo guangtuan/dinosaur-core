@@ -32,7 +32,7 @@ const appInit = async () => {
     })
 
     app.listen(webPort, () => {
-        console.log('app listen on', port)
+        console.log('app listen on', webPort)
         console.log(
             app._router.stack
                 .map(({ route }) => route)
