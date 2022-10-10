@@ -1,13 +1,13 @@
 const R = require('ramda')
 
-const removeStart = (ch) => (str) => {
+const removeStart = (ch: string) => (str: string) => {
     if (str.startsWith(ch)) {
         return str.slice(ch.length)
     }
     return str
 }
 
-const removeEnd = (ch) => (str) => {
+const removeEnd = (ch: string) => (str: string) => {
     if (str.endsWith(ch)) {
         return str.slice(0, -1 * ch.length)
     }
@@ -16,4 +16,4 @@ const removeEnd = (ch) => (str) => {
 
 const handle = R.compose(removeStart('/'), removeEnd('/'))
 
-module.exports = R.pipe(R.reject(R.isEmpty), R.map(handle), R.join('/'))
+export default R.pipe(R.reject(R.isEmpty), R.map(handle), R.join('/'))
