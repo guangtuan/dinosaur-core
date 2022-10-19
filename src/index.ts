@@ -23,6 +23,7 @@ const appInit = async () => {
             app[api.method](
                 '/' + actualUrl,
                 async (req: express.Request, res: express.Response) => {
+                    console.log(`api ${JSON.stringify(req.body)}`)
                     const result = await api.handler(req, res)
                     res.status(200)
                     res.json(result)
