@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
-import { ApiCollection } from '../../framework/api'
-import { load } from './spaceDetailService'
-import { ReResource } from './SpaceDetail'
+import { ApiCollection } from '../framework/api'
+import { load } from './ResourceService'
+import { ReResource } from './ReResource'
 
 export default {
     base: 'resources',

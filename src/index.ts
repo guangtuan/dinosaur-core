@@ -5,7 +5,7 @@ import * as db from './framework/db'
 import urlJoin from './url'
 
 import spaceApi from './space/api'
-import spaceDetailApi from './space/detail/api'
+import spaceDetailApi from './resources/api'
 
 const createApp = (): express.Express => {
     const app = express()

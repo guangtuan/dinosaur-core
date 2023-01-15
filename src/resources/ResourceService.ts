@@ -1,4 +1,4 @@
-import { ReFile, ReFolder, ReResource, OsFile } from './SpaceDetail'
+import { ReFile, ReFolder, ReResource, OsFile } from './ReResource'
 
 import fs from 'fs'
 
