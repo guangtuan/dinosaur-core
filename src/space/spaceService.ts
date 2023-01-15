@@ -28,7 +28,7 @@ export const update = async (
     space: SpaceCreation,
 ): Promise<SpaceVo> => {
     console.log(`set to ${JSON.stringify(space)}`)
-    await spaces().updateOne({_id: new ObjectId(id)}, {"$set": space})
+    await spaces().updateOne({ _id: new ObjectId(id) }, { $set: space })
     return {
         id: id,
         ...space,
