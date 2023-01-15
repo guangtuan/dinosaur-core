@@ -1,26 +1,37 @@
-import { ReFile, ReFolder, ReResource } from './SpaceDetail'
+import { ReFile, ReFolder, ReResource, OsFile } from './SpaceDetail'
 
 import fs from 'fs'
 
 import path from 'path'
 
-export const load = (folder: ReFolder): Array<ReResource> => {
-    return fs.readdirSync(folder.osFile.fullpath).map(f => {
-        const joint = path.join(folder.osFile.fullpath, f)
+function convert(
+    fullpath: string,
+): (str: string, _1: number, _2: Array<String>) => ReFile | ReFolder {
+    return (f: string, _1: number, _2: Array<String>) => {
+        const joint = path.join(fullpath, f)
         const stat = fs.statSync(joint)
         if (stat.isDirectory()) {
-            return new ReFolder({
-                name: f,
-                fullpath: joint
-            })
-        } else {
-            return new ReFile(
-                {
+            return {
+                tag: 'folder',
+                osFile: {
                     name: f,
-                    fullpath: joint
+                    fullpath: joint,
                 },
-                folder
-            )
+            }
         }
-    })
+        return {
+            tag: 'file',
+            osFile: {
+                name: f,
+                fullpath: joint,
+            },
+        }
+    }
+}
+
+export const load = (folder: string): ReResource => {
+    return {
+        on: folder,
+        children: fs.readdirSync(folder).map(convert(folder)),
+    }
 }
