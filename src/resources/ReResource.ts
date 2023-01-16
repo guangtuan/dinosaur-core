@@ -3,8 +3,16 @@ export type OsFile = {
     fullpath: string
 }
 
+export type FileSize = {
+    origin: number
+
+    readable: string
+}
+
 export type ReFile = {
     tag: 'file'
+
+    size: FileSize
 
     osFile: OsFile
 }
