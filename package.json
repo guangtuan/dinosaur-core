@@ -3,7 +3,7 @@
     "dev": "tsc && node dist/index.js",
     "test": "jest",
     "type-check": "tsc",
-    "pretty": "npx prettier --write ."
+    "fmt": "npx prettier --write ."
   },
   "dependencies": {
     "@types/body-parser": "1.19.2",
