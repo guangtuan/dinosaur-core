@@ -1,6 +1,7 @@
 export type OsFile = {
     name: string
     fullpath: string
+    size: FileSize
 }
 
 export type FileSize = {
@@ -11,8 +12,6 @@ export type FileSize = {
 
 export type ReFile = {
     tag: 'file'
-
-    size: FileSize
 
     osFile: OsFile
 }

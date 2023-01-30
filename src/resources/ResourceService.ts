@@ -5,12 +5,13 @@ import fs from 'fs'
 import path from 'path'
 
 function humanReadAbleFileSize(b: number): string {
-    var u = 0, s = 1024;
+    let u = 0
+    let s = 1024
     while (b >= s || -b >= s) {
-        b /= s;
-        u++;
+        b /= s
+        u++
     }
-    return (u ? b.toFixed(1) : b) + ' KMGTPEZY'[u] + 'B';
+    return (u ? b.toFixed(1) : b) + ' KMGTPEZY'[u] + 'B'
 }
 
 function convert(
@@ -23,6 +24,10 @@ function convert(
             return {
                 tag: 'folder',
                 osFile: {
+                    size: {
+                        origin: stat.size,
+                        readable: humanReadAbleFileSize(stat.size),
+                    },
                     name: f,
                     fullpath: joint,
                 },
@@ -30,11 +35,11 @@ function convert(
         }
         return {
             tag: 'file',
-            size: {
-                origin: stat.size,
-                readable: humanReadAbleFileSize(stat.size)
-            },
             osFile: {
+                size: {
+                    origin: stat.size,
+                    readable: humanReadAbleFileSize(stat.size),
+                },
                 name: f,
                 fullpath: joint,
             },
