@@ -4,6 +4,7 @@ specifiers:
   '@types/body-parser': 1.19.2
   '@types/express': ^4.17.14
   '@types/jest': ^29.1.2
+  '@types/node-media-server': ^2.3.3
   body-parser: 1.20.1
   cors: ^2.8.5
   express: ^4.18.1
@@ -26,6 +27,7 @@ dependencies:
 devDependencies:
   '@types/express': registry.npmmirror.com/@types/express/4.17.14
   '@types/jest': registry.npmmirror.com/@types/jest/29.1.2
+  '@types/node-media-server': registry.npmmirror.com/@types/node-media-server/2.3.3
   jest: registry.npmmirror.com/jest/28.1.3
   prettier: registry.npmmirror.com/prettier/2.7.1
   typescript: registry.npmmirror.com/typescript/4.8.4
@@ -1156,6 +1158,12 @@ packages:
     resolution: {integrity: sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/mime/-/mime-3.0.1.tgz}
     name: '@types/mime'
     version: 3.0.1
+    dev: true
+
+  registry.npmmirror.com/@types/node-media-server/2.3.3:
+    resolution: {integrity: sha512-ARmMxfYIryHlAK85XvnCcqWRWREEw49LG9ZHQIMrxxKdIIVA+tP4XhyNW1hXddmOswURcNKdip582BG16TxdoQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node-media-server/-/node-media-server-2.3.3.tgz}
+    name: '@types/node-media-server'
+    version: 2.3.3
     dev: true
 
   registry.npmmirror.com/@types/node/18.6.3:
