@@ -7,6 +7,8 @@ import urlJoin from './url'
 import spaceApi from './space/api'
 import spaceDetailApi from './resources/api'
 
+import startMediaServer from './media/startServer'
+
 const createApp = (): express.Express => {
     const app = express()
     app.use(bodyParser.json())
@@ -47,6 +49,7 @@ const appInit = async () => {
     try {
         await db.init()
         await appInit()
+        startMediaServer()
     } catch (e) {
         console.error(e)
         await db.close()
