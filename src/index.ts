@@ -14,8 +14,8 @@ const apiList = [spaceApi, spaceDetailApi]
 const appInit = async () => {
     const app = httpServer.createApp()
 
-    apiList.forEach(async ({ base, apis }): Promise<void> => {
-        apis.forEach(async (api) => {
+    for (const { base, apis } of apiList) {
+        for (const api of apis) {
             const actualUrl = urlJoin(['api', base, api.url])
             console.log(`actual url is ${actualUrl}, method is ${api.method}`)
             app[api.method](
@@ -28,8 +28,8 @@ const appInit = async () => {
                     res.end()
                 },
             )
-        })
-    })
+        }
+    }
 
     app.listen(env.webPort, () => {
         console.log('app listen on', env.webPort)
