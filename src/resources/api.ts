@@ -14,7 +14,8 @@ export default {
                 res: Response,
             ): Promise<ReResource> => {
                 const on = req.query['on'] as string
-                return await load(on)
+                const space = req.query['space'] as string
+                return load({ on, space })
             },
         },
     ],

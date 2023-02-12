@@ -5,6 +5,16 @@ import { ObjectId } from 'mongodb'
 
 const spaces = () => db.collection('spaces')
 
+export const byName = async (name: string): Promise<SpaceVo> => {
+    const pos = (await spaces().find({}).toArray()) as Array<SpacePo>
+    const po = pos.find((v) => v.name === name)
+    return {
+        id: po._id.toString(),
+        name: po.name,
+        physicsPath: po.physicsPath,
+    }
+}
+
 export const all = async (): Promise<Array<SpaceVo>> => {
     const pos = (await spaces().find({}).toArray()) as Array<SpacePo>
     return pos.map((po) => ({

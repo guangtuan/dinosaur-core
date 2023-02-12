@@ -14,6 +14,8 @@ export type ReFile = {
     tag: 'file'
 
     osFile: OsFile
+
+    remote: string
 }
 
 export type ReFolder = {

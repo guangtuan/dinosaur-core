@@ -8,11 +8,14 @@ import spaceApi from './space/api'
 import spaceDetailApi from './resources/api'
 
 import startMediaServer from './media/startServer'
+import { inject as injectStatic } from './framework/staticAccess'
 
 const apiList = [spaceApi, spaceDetailApi]
 
 const appInit = async () => {
     const app = httpServer.createApp()
+
+    await injectStatic(app)
 
     for (const { base, apis } of apiList) {
         for (const api of apis) {
