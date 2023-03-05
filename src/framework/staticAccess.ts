@@ -19,5 +19,5 @@ export const deParse = (
             spaceVo,
         }),
     )
-    return physicsPathForAFile.replace(spaceVo.physicsPath, spaceVo.name)
+    return `/space/${physicsPathForAFile.replace(spaceVo.physicsPath, spaceVo.name)}`
 }
