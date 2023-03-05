@@ -2,9 +2,11 @@
 
 ```shell
 # db 的链接
-export R_MANAGE_DB_URL=mongodb://localhost:27017
+export DINOSAUR_DB_URL=mongodb://localhost:27017
 # web 端口
-export R_MANAGE_WEB_PORT=15889
+export DINOSAUR_WEB_PORT=15889
+# web host
+export DINOSAUR_STATIC_HOST=192.168.1.1:$DINOSAUR_WEB_PORT
 # 流媒体服务器端口
-export R_MANAGE_MEDIA_PORT=15890
+export DINOSAUR_MEDIA_PORT=15890
 ```

@@ -2,10 +2,17 @@ import express from 'express'
 
 import { all as spaceList } from '../space/spaceService'
 import { SpaceVo } from '../space/Space'
+import { staticHost } from './env'
+import joinUrl from '../url'
+
+const namespace = 'space'
 
 export const inject = async (app: express.Application) => {
     for (let space of await spaceList()) {
-        app.use(`/space/${space.name}`, express.static(space.physicsPath))
+        app.use(
+            `/${namespace}/${space.name}`,
+            express.static(space.physicsPath),
+        )
     }
 }
 
@@ -19,5 +26,9 @@ export const deParse = (
             spaceVo,
         }),
     )
-    return physicsPathForAFile.replace(spaceVo.physicsPath, spaceVo.name)
+    return joinUrl([
+        staticHost,
+        namespace,
+        physicsPathForAFile.replace(spaceVo.physicsPath, spaceVo.name),
+    ])
 }
