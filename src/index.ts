@@ -7,8 +7,8 @@ import httpServer from './framework/httpServer'
 import spaceApi from './space/api'
 import spaceDetailApi from './resources/api'
 
-import startMediaServer from './media/startServer'
 import { inject as injectStatic } from './framework/staticAccess'
+import startMediaServer from './mediaServer/startServer'
 
 const apiList = [spaceApi, spaceDetailApi]
 
