@@ -1,4 +1,4 @@
-import { ReFile, ReFolder, ReResource, OsFile } from './ReResource'
+import { ReFolder, ReResource, ReFileVo } from './ReResource'
 import { deParse } from '../framework/staticAccess'
 import { byName } from '../space/spaceService'
 
@@ -20,7 +20,7 @@ function humanReadAbleFileSize(b: number): string {
 function convert(
     fullpath: string,
     space: SpaceVo,
-): (str: string, _1: number, _2: Array<String>) => ReFile | ReFolder {
+): (str: string, _1: number, _2: Array<String>) => ReFileVo | ReFolder {
     return (f: string, _1: number, _2: Array<String>) => {
         const joint = path.join(fullpath, f)
         const stat = fs.statSync(joint)
