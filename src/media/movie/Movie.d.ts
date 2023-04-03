@@ -15,10 +15,3 @@ export type MoviePo = Movie & {
 export type MovieVo = Movie & {
     media: ReFileVo
 }
-
-export type MovieToFile = {
-    _id: ObjectId
-    movieId: ObjectId
-    fullPath: string
-    spaceId: ObjectId
-}

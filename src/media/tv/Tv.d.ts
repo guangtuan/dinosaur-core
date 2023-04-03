@@ -20,10 +20,3 @@ export type Episode = {
 export type EpisodePo = {
     _id: ObjectId
 } & Episode
-
-export type TvToFile = {
-    _id: ObjectId
-    episodeId: ObjectId
-    fullPath: string
-    spaceId: ObjectId
-}
