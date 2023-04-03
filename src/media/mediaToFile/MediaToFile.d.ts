@@ -1,9 +1,9 @@
 import { ObjectId } from 'mongodb'
 
 export type MediaToFile = {
-    mediaId: ObjectId // movieId or tvShowId
+    mediaId: string // movieId or tvShowId
     fullPath: string
-    spaceId: ObjectId
+    spaceId: string
 }
 
 export type MediaToFileStore = {
