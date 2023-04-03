@@ -18,7 +18,7 @@ export type MovieVo = Movie & {
 
 export type MovieToFile = {
     _id: ObjectId
-    moveId: ObjectId
+    movieId: ObjectId
     fullPath: string
     spaceId: ObjectId
 }
