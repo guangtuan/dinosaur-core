@@ -1,9 +1,9 @@
-import {ObjectId} from "mongodb";
+import { ObjectId } from 'mongodb'
+import { Raiting } from '../rating/Rating'
 
 export type Series = {
-    name: string,
-    imdb: string,
-    douban: string,
+    name: string
+    rating: Raiting
     cover: string
 }
 
@@ -12,18 +12,18 @@ export type SeriesPo = {
 } & Series
 
 export type Episode = {
-    seriesId: ObjectId,
-    season: number,
+    seriesId: ObjectId
+    season: number
     no: number
 }
 
-export  type EpisodePo = {
+export type EpisodePo = {
     _id: ObjectId
 } & Episode
 
 export type TvToFile = {
-    _id: ObjectId,
-    episodeId: ObjectId,
-    fullPath: string,
+    _id: ObjectId
+    episodeId: ObjectId
+    fullPath: string
     spaceId: ObjectId
 }

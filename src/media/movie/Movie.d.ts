@@ -1,10 +1,10 @@
-import {ObjectId} from "mongodb";
-import {ReFileVo} from "../../resources/ReResource";
+import { ObjectId } from 'mongodb'
+import { ReFileVo } from '../../resources/ReResource'
+import { Raiting } from '../rating/Rating'
 
 type Movie = {
-    name: String,
-    imdb: String,
-    douban: String,
+    name: String
+    rating: Raiting
     pic: String
 }
 
@@ -17,8 +17,8 @@ type MovieVo = Movie & {
 }
 
 type MovieToFile = {
-    _id: ObjectId,
-    moveId: ObjectId,
-    fullPath: string,
+    _id: ObjectId
+    moveId: ObjectId
+    fullPath: string
     spaceId: ObjectId
 }
