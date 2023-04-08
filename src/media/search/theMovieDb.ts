@@ -5,7 +5,24 @@ import fetch from 'node-fetch'
 
 import { tmdbApiKey, httpsProxy } from '../../framework/env'
 
-const proxy = createHttpsProxyAgent(httpsProxy)
+const proxy = () => {
+    if (httpsProxy) {
+        return createHttpsProxyAgent(httpsProxy)
+    } else {
+        return null
+    }
+}
+
+const proxyOptions = (options: any) => {
+    const p = proxy()
+    if (p == null) {
+        return options
+    }
+    return {
+        ...options,
+        agent: p
+    }
+}
 
 type TMBDSearchResponse = {
     results: any
@@ -24,11 +41,9 @@ export const impl: searchByText = async (
         page: '1',
         include_adult: 'false',
     }
-    const resp = await fetch(`${host}${path}?${new URLSearchParams(queries)}`, {
-        agent: proxy,
-    })
+    const resp = await fetch(`${host}${path}?${new URLSearchParams(queries)}`, proxyOptions({}))
     const json = (await resp.json()) as TMBDSearchResponse
-    return json.results.map((r: any) => ({
+    return (json.results || []).map((r: any) => ({
         id: r.id,
         name: r.title,
         pic: r.poster_path,
