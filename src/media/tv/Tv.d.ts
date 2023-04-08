@@ -7,16 +7,16 @@ export type Series = {
     cover: string
 }
 
-export type SeriesPo = {
+export type SeriesStore = {
     _id: ObjectId
 } & Series
 
-export type Episode = {
+export type Tv = {
     seriesId: ObjectId
     season: number
     no: number
 }
 
-export type EpisodePo = {
+export type TvStore = {
     _id: ObjectId
-} & Episode
+} & Tv

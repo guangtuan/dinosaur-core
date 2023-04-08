@@ -20,7 +20,7 @@ const proxyOptions = (options: any) => {
     }
     return {
         ...options,
-        agent: p
+        agent: p,
     }
 }
 
@@ -41,7 +41,10 @@ export const impl: searchByText = async (
         page: '1',
         include_adult: 'false',
     }
-    const resp = await fetch(`${host}${path}?${new URLSearchParams(queries)}`, proxyOptions({}))
+    const resp = await fetch(
+        `${host}${path}?${new URLSearchParams(queries)}`,
+        proxyOptions({}),
+    )
     const json = (await resp.json()) as TMBDSearchResponse
     return (json.results || []).map((r: any) => ({
         id: r.id,

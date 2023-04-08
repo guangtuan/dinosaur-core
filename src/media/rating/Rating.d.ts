@@ -1,4 +1,3 @@
 export type Raiting = {
-    douban: number
-    imdb: number
+    tmdb: number
 }

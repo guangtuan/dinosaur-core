@@ -8,10 +8,10 @@ export type Movie = {
     pic: String
 }
 
-export type MoviePo = Movie & {
+export type MovieStore = Movie & {
     id: ObjectId
 }
 
-export type MovieVo = Movie & {
+export type MovieDisplay = Movie & {
     media: ReFileVo
 }
