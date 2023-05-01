@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb'
-import { ReFileVo } from '../../resources/ReResource'
+import { FileVo } from '../../resources/ReResource'
 import { Raiting } from '../rating/Rating'
 
 export type Movie = {
@@ -13,5 +13,5 @@ export type MovieStore = Movie & {
 }
 
 export type MovieDisplay = Movie & {
-    media: ReFileVo
+    media: FileVo
 }

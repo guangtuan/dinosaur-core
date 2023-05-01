@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { ApiCollection } from '../framework/api'
 import { load } from './ResourceService'
-import { ReResource } from './ReResource'
+import { DinosaurResource } from './ReResource'
 
 export default {
     base: 'resources',
@@ -12,7 +12,7 @@ export default {
             handler: async (
                 req: Request,
                 res: Response,
-            ): Promise<ReResource> => {
+            ): Promise<DinosaurResource> => {
                 const on = req.query['on'] as string
                 const space = req.query['space'] as string
                 return load({ on, space })

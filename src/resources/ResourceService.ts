@@ -1,4 +1,4 @@
-import { ReFolder, ReResource, ReFileVo } from './ReResource'
+import { Folder, DinosaurResource, FileVo, UnionFile } from './ReResource'
 import { deParse } from '../framework/staticAccess'
 import { byName } from '../space/spaceService'
 
@@ -17,26 +17,21 @@ function humanReadAbleFileSize(b: number): string {
     return (u ? b.toFixed(1) : b) + ' KMGTPEZY'[u] + 'B'
 }
 
-function convert(
-    fullpath: string,
-    space: SpaceVo,
-): (str: string, _1: number, _2: Array<String>) => ReFileVo | ReFolder {
-    return (f: string, _1: number, _2: Array<String>) => {
-        const joint = path.join(fullpath, f)
-        const stat = fs.statSync(joint)
-        if (stat.isDirectory()) {
-            return {
-                tag: 'folder',
-                osFile: {
-                    size: {
-                        origin: stat.size,
-                        readable: humanReadAbleFileSize(stat.size),
-                    },
-                    name: f,
-                    fullpath: joint,
+function fileInfo(absPath: string, f: string): UnionFile {
+    const stat = fs.statSync(absPath)
+    if (stat.isDirectory()) {
+        return {
+            tag: 'folder',
+            osFile: {
+                size: {
+                    origin: stat.size,
+                    readable: humanReadAbleFileSize(stat.size),
                 },
-            }
+                name: f,
+                fullpath: absPath,
+            },
         }
+    } else {
         return {
             tag: 'file',
             osFile: {
@@ -45,9 +40,26 @@ function convert(
                     readable: humanReadAbleFileSize(stat.size),
                 },
                 name: f,
-                fullpath: joint,
+                fullpath: absPath,
             },
-            remote: deParse(space, joint),
+        }
+    }
+}
+
+export function extractSpace(
+    fullpath: string,
+    space: SpaceVo,
+): (str: string, _1: number, _2: Array<String>) => FileVo | Folder {
+    return (f: string, _1: number, _2: Array<String>) => {
+        const joint = path.join(fullpath, f)
+        const unionFile = fileInfo(joint, f)
+        if (unionFile.tag == 'file') {
+            return {
+                ...unionFile,
+                remote: deParse(space, unionFile.osFile.fullpath),
+            }
+        } else {
+            return unionFile
         }
     }
 }
@@ -59,12 +71,21 @@ type ResourceQuery = {
 
 export const load = async (
     resourceQuery: ResourceQuery,
-): Promise<ReResource> => {
+): Promise<DinosaurResource> => {
     const space = await byName(resourceQuery.space)
     return {
         on: resourceQuery.on,
-        children: fs
-            .readdirSync(resourceQuery.on)
-            .map(convert(resourceQuery.on, space)),
+        children: fs.readdirSync(resourceQuery.on).map((f: string) => {
+            const joint = path.join(resourceQuery.on, f)
+            const unionFile = fileInfo(joint, f)
+            if (unionFile.tag == 'file') {
+                return {
+                    ...unionFile,
+                    remote: deParse(space, unionFile.osFile.fullpath),
+                }
+            } else {
+                return unionFile
+            }
+        }),
     }
 }
