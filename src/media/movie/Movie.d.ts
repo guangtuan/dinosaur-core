@@ -1,11 +1,8 @@
 import { ObjectId } from 'mongodb'
-import { FileVo } from '../../resources/ReResource'
-import { Raiting } from '../rating/Rating'
 
 export type Movie = {
     name: String
-    rating: Raiting
-    pic: String
+    cover: String
 }
 
 export type MovieStore = Movie & {
@@ -13,5 +10,5 @@ export type MovieStore = Movie & {
 }
 
 export type MovieDisplay = Movie & {
-    media: FileVo
+    id: string
 }

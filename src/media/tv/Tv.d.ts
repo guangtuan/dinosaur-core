@@ -1,9 +1,7 @@
 import { ObjectId } from 'mongodb'
-import { Raiting } from '../rating/Rating'
 
 export type Series = {
     name: string
-    rating: Raiting
     cover: string
 }
 
@@ -20,3 +18,7 @@ export type Tv = {
 export type TvStore = {
     _id: ObjectId
 } & Tv
+
+export type SeriesDisplay = Series & {
+    id: string
+}
