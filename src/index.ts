@@ -5,13 +5,14 @@ import urlJoin from './url'
 import httpServer from './framework/httpServer'
 
 import spaceApi from './space/api'
+import mediaApi from './media/tv/api'
 import spaceDetailApi from './resources/api'
 import searchApi from './media/search/searchService'
 
 import { inject as injectStatic } from './framework/staticAccess'
 import startMediaServer from './mediaServer/startServer'
 
-const apiList = [spaceApi, spaceDetailApi, searchApi]
+const apiList = [spaceApi, spaceDetailApi, searchApi, mediaApi]
 
 const appInit = async () => {
     const app = httpServer.createApp()
